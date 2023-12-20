@@ -1,0 +1,11 @@
+<section class="class">
+    <section *ngIf="canShow">
+        Estamos mostrando isso porque foi permitido por meio de reunioes
+    </section>
+
+    <h2 *ngIf="name === 'Victor'; else nameNotFound">O nome é Victor</h2>
+    <ng-template #nameNotFound>
+        <h1>nenhum nome encontrado</h1>
+    </ng-template>
+
+</section>
