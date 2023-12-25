@@ -41,4 +41,32 @@ export default class CommentsController {
         }
     }
 
+    public async destroy({params}: HttpContextContract){
+        const comment = await Comment.findOrFail(params.id)
+
+        await comment.delete()
+
+        return{
+            msg: "mensagem excluida com sucesso",
+            data: comment
+        }
+    }
+
+    public async update({request, params}: HttpContextContract){
+
+        const body = request.body()
+
+        const comment = await Comment.findOrFail(params.id)
+
+        comment.username = body.username
+        comment.text = body.text
+
+        await comment.save()
+
+        return{
+            msg: "Comentario auterado com sucesso",
+            data: comment
+        }
+    }
+
 }
